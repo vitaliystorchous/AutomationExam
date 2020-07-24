@@ -11,9 +11,9 @@ import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import selenium.helpers.HomepageHelper;
+import selenium.helpers.pages.HomepageHelper;
 import selenium.helpers.NavigationHelper;
-import selenium.helpers.SearchResultsPageHelper;
+import selenium.helpers.pages.SearchResultsPageHelper;
 
 import java.io.File;
 import java.io.FileReader;

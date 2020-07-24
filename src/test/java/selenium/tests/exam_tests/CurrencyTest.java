@@ -1,9 +1,11 @@
-package selenium.tests;
+package selenium.tests.exam_tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import selenium.models.Product;
+import selenium.tests.TestBase;
 
 import java.util.List;
 
@@ -11,7 +13,7 @@ import static org.testng.Assert.assertEquals;
 
 public class CurrencyTest extends TestBase {
 
-    @BeforeTest
+    @BeforeClass
     public void executePreconditions() {
         app.goTo().homepage();
     }
@@ -21,7 +23,8 @@ public class CurrencyTest extends TestBase {
         String selectedCurrency = app.homepage().getSelectedCurrency();
         List<Product> products = app.homepage().getAllProducts();
         for (Product product : products) {
-            assertEquals(product.getPriceCurrency(), selectedCurrency);
+            assertEquals(product.getPriceCurrency(), selectedCurrency,
+                    "Currency of prices does not match selected currency by default - " + selectedCurrency + "!");
         }
     }
 
@@ -31,7 +34,8 @@ public class CurrencyTest extends TestBase {
         app.homepage().selectCurrency("$");
         List<Product> products = app.homepage().getAllProducts();
         for (Product product : products) {
-            assertEquals(product.getPriceCurrency(), "$");
+            assertEquals(product.getPriceCurrency(), "$",
+                    "Currency of prices does not match selected currency - USD!");
         }
     }
 
@@ -41,7 +45,8 @@ public class CurrencyTest extends TestBase {
         app.homepage().selectCurrency("€");
         List<Product> products = app.homepage().getAllProducts();
         for (Product product : products) {
-            assertEquals(product.getPriceCurrency(), "€");
+            assertEquals(product.getPriceCurrency(), "€",
+                    "Currency of prices does not match selected currency - EUR!");
         }
     }
 
@@ -51,7 +56,8 @@ public class CurrencyTest extends TestBase {
         app.homepage().selectCurrency("₴");
         List<Product> products = app.homepage().getAllProducts();
         for (Product product : products) {
-            assertEquals(product.getPriceCurrency(), "₴");
+            assertEquals(product.getPriceCurrency(), "₴",
+                    "Currency of prices does not match selected currency - UAH!");
         }
     }
 }

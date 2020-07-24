@@ -1,8 +1,10 @@
-package selenium.tests;
+package selenium.tests.exam_tests;
 
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import selenium.models.Product;
+import selenium.tests.TestBase;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -14,7 +16,7 @@ public class SearchResultsPageTest extends TestBase {
 
     List<Product> products;
 
-    @BeforeTest
+    @BeforeClass
     public void executePreconditions() {
         app.goTo().homepage();
         app.homepage().selectCurrency("$");
@@ -26,20 +28,25 @@ public class SearchResultsPageTest extends TestBase {
     @Test (alwaysRun = true)
     public void testSearchResultsCounter() {
         int searchResultsCounterValue = app.searchResultsPage().getSearchResultsCounterValue();
-        assertEquals(searchResultsCounterValue, products.size());
+        assertEquals(searchResultsCounterValue, products.size(),
+                "Search results counter is not equal to the actual amount of found products!");
     }
 
     @Test (alwaysRun = true)
     public void testAllPricesAreInUSD() {
         for (Product product : products) {
-            assertEquals(product.getPriceCurrency(), "$");
+            assertEquals(product.getPriceCurrency(), "$",
+                    "Currency of prices does not match selected currency - UDS!");
         }
     }
 
     @Test (alwaysRun = true)
     public void testProductsAreSortedByPriceFromHighToLow() {
         for (int i = 0; i < products.size() - 1; i++) {
-            assertTrue(products.get(i).getRegularPrice() >= products.get(i + 1).getRegularPrice());
+            assertTrue(products.get(i).getRegularPrice() >= products.get(i + 1).getRegularPrice(),
+                    "Products are not sorted from high to low:\n" +
+                            "current product price = " + products.get(i).getRegularPrice() +
+                            "next product price = " + products.get(i + 1).getRegularPrice());
         }
     }
 
@@ -51,7 +58,8 @@ public class SearchResultsPageTest extends TestBase {
                         product.getRegularPrice() - (product.getRegularPrice() / 100 * product.getDiscount());
                 double expectedPrice =
                         new BigDecimal(priceWithDiscount).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-                assertEquals(product.getCurrentPrice(), expectedPrice);
+                assertEquals(product.getCurrentPrice(), expectedPrice,
+                        "The product price with discount incorrectly calculated!");
             }
         }
     }
