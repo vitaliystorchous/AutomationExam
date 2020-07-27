@@ -1,0 +1,10 @@
+
+processing: navigate to http://prestashop-automation.qatestlab.com.ua/ru/
+success: navigated to http://prestashop-automation.qatestlab.com.ua/ru/
+processing: find By.cssSelector: .currency-selector span.expand-more
+success: find By.cssSelector: .currency-selector span.expand-more
+processing: get text of [[ChromeDriver: chrome on WINDOWS (d339a6cbb649b65cc7b69def8c22ea1f)] -> css selector: .currency-selector span.expand-more]
+success: get text of [[ChromeDriver: chrome on WINDOWS (d339a6cbb649b65cc7b69def8c22ea1f)] -> css selector: .currency-selector span.expand-more]; gotten text: 
+processing: find By.cssSelector: .currency-selector span.expand-more
+success: find By.cssSelector: .currency-selector span.expand-more
+processing: click on [[ChromeDriver: chrome on WINDOWS (d339a6cbb649b65cc7b69def8c22ea1f)] -> css selector: .currency-selector span.expand-more]

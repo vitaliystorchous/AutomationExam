@@ -10,6 +10,7 @@ import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import selenium.helpers.pages.HomepageHelper;
 import selenium.helpers.NavigationHelper;
@@ -29,7 +30,7 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 public class ApplicationManager {
 
     private final Properties properties;
-    private WebDriver wd;
+    private EventFiringWebDriver wd;
     private WebDriverWait wait;
     public int implicitWaitTimeAmount = 10;
     private String browser;
@@ -60,31 +61,31 @@ public class ApplicationManager {
                     case BrowserType.CHROME: {
                         File file = new File("src/test/resources/drivers/chromedriver.exe");
                         System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
-                        wd = new ChromeDriver();
+                        wd = new EventFiringWebDriver(new ChromeDriver());
                         break;
                     }
                     case BrowserType.FIREFOX: {
                         File file = new File("src/test/resources/drivers/geckodriver.exe");
                         System.setProperty("webdriver.gecko.driver", file.getAbsolutePath());
-                        wd = new FirefoxDriver();
+                        wd = new EventFiringWebDriver(new FirefoxDriver());
                         break;
                     }
                     case BrowserType.IE: {
                         File file = new File("src/test/resources/drivers/IEDriverServer.exe");
                         System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
-                        wd = new InternetExplorerDriver();
+                        wd = new EventFiringWebDriver(new InternetExplorerDriver());
                         break;
                     }
                     case BrowserType.EDGE: {
                         File file = new File("src/test/resources/drivers/msedgedriver.exe");
                         System.setProperty("webdriver.edge.driver", file.getAbsolutePath());
-                        wd = new EdgeDriver();
+                        wd = new EventFiringWebDriver(new EdgeDriver());
                         break;
                     }
                     case BrowserType.OPERA_BLINK: {
                         File file = new File("src/test/resources/drivers/operadriver.exe");
                         System.setProperty("webdriver.opera.driver", file.getAbsolutePath());
-                        wd = new OperaDriver();
+                        wd = new EventFiringWebDriver(new OperaDriver());
                         break;
                     }
                     case "mobile":
@@ -93,7 +94,7 @@ public class ApplicationManager {
 
                         ChromeOptions chromeOptions = new ChromeOptions();
                         chromeOptions.setExperimentalOption("mobileEmulation", mobileEmulation);
-                        wd = new ChromeDriver(chromeOptions);
+                        wd = new EventFiringWebDriver(new ChromeDriver(chromeOptions));
                         break;
                 }
             } else {
@@ -106,12 +107,13 @@ public class ApplicationManager {
                 caps.setCapability("browserstack.selenium_version", "3.141.59");
                 caps.setCapability("name", "qwerasdf17's First Test");
                 try {
-                    wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), caps);
+                    wd = new EventFiringWebDriver(new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), caps));
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
             }
 
+            wd.register(new Logger());
             wd.manage().window().maximize();
             wd.manage().timeouts().implicitlyWait(implicitWaitTimeAmount, SECONDS);
             wait = new WebDriverWait(wd, 10);

@@ -60,6 +60,7 @@ public class HomepageHelper extends HelperBase {
             }
             case "₴": {
                 UAHDropdownOption.click();
+                break;
             }
             default:
                 System.out.println("Invalid currency sign!");
