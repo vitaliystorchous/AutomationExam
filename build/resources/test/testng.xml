@@ -5,6 +5,7 @@
         <classes>
             <class name="selenium.tests.exam_tests.CurrencyTest"/>
             <class name="selenium.tests.exam_tests.SearchResultsPageTest"/>
+            <class name="selenium.tests.Sandbox"></class>
         </classes>
     </test>
 </suite>
