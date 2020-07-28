@@ -36,6 +36,12 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
+test {
+    useTestNG() {
+        suites 'src/test/resources/testng.xml'
+    }
+}
+
 task regularTest(type: Test) {
     useTestNG() {
         suites 'src/test/resources/testng.xml'

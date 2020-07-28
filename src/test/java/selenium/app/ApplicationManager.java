@@ -113,7 +113,7 @@ public class ApplicationManager {
                 }
             }
 
-            wd.register(new Logger());
+            wd.register(new WebDriverLogger());
             wd.manage().window().maximize();
             wd.manage().timeouts().implicitlyWait(implicitWaitTimeAmount, SECONDS);
             wait = new WebDriverWait(wd, 10);
