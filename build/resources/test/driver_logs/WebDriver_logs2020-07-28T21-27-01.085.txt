@@ -1,2 +1,0 @@
-
-processing: navigate to http://prestashop-automation.qatestlab.com.ua/ru/
