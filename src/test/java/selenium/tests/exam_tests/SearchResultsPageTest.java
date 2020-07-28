@@ -25,14 +25,16 @@ public class SearchResultsPageTest extends TestBase {
         products = app.searchResultsPage().getAllProducts();
     }
 
-    @Test (alwaysRun = true)
+    @Test (alwaysRun = true,
+            description = "The search results counter displays the correct number of found products")
     public void testSearchResultsCounter() {
         int searchResultsCounterValue = app.searchResultsPage().getSearchResultsCounterValue();
         assertEquals(searchResultsCounterValue, products.size(),
                 "Search results counter is not equal to the actual amount of found products!");
     }
 
-    @Test (alwaysRun = true)
+    @Test (alwaysRun = true,
+            description = "The product prices are displayed in selected currency on the search results page - USD")
     public void testAllPricesAreInUSD() {
         for (Product product : products) {
             assertEquals(product.getPriceCurrency(), "$",
@@ -40,7 +42,8 @@ public class SearchResultsPageTest extends TestBase {
         }
     }
 
-    @Test (alwaysRun = true)
+    @Test (alwaysRun = true,
+            description = "The products are sorted by their price from the highest price to the lowest one")
     public void testProductsAreSortedByPriceFromHighToLow() {
         for (int i = 0; i < products.size() - 1; i++) {
             assertTrue(products.get(i).getRegularPrice() >= products.get(i + 1).getRegularPrice(),
@@ -50,7 +53,8 @@ public class SearchResultsPageTest extends TestBase {
         }
     }
 
-    @Test (alwaysRun = true)
+    @Test (alwaysRun = true,
+            description = "The product prices that have discount are calculated correctly based on the amount of discount")
     public void testPriceWithDiscountCalculatedCorrectly() {
         for (Product product : products) {
             if (product.getDiscount() > 0) {

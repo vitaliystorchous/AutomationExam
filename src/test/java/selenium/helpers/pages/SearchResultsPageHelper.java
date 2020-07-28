@@ -1,5 +1,6 @@
 package selenium.helpers.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -43,6 +44,7 @@ public class SearchResultsPageHelper extends HelperBase {
         PageFactory.initElements(wd, this);
     }
 
+    @Step("Sort found results by {sortOption}")
     public void sortResultsBy(String sortOption) {
         WebElement firstProduct = productsBlock.getProduct(0);
         sortDropdown.click();
@@ -73,6 +75,7 @@ public class SearchResultsPageHelper extends HelperBase {
         wait.until(stalenessOf(firstProduct));
     }
 
+    @Step("Pay attention to the value of the search results counter")
     public int getSearchResultsCounterValue() {
         String amountOfSearchResults = productsCounter.getText().replaceAll("\\D", "");
         return Integer.parseInt(amountOfSearchResults);

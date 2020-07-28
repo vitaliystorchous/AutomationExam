@@ -1,5 +1,6 @@
 package selenium.helpers.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -41,12 +42,14 @@ public class HomepageHelper extends HelperBase {
         PageFactory.initElements(wd, this);
     }
 
+    @Step("Pay attention to the selected currency")
     public String getSelectedCurrency() {
         String selectedCurrency = currencyDropdown.getText();
         String currencySign = selectedCurrency.substring(selectedCurrency.length() - 1);
         return currencySign;
     }
 
+    @Step("Select currency - {currency}")
     public void selectCurrency(String currency) {
         currencyDropdown.click();
         switch (currency) {
@@ -68,6 +71,7 @@ public class HomepageHelper extends HelperBase {
         wait.until(textToBePresentInElement(currencyDropdown, currency));
     }
 
+    @Step("Type the \"{searchQuery}\" text and click the search button")
     public void searchInCatalog(String searchQuery) {
         WebElement homepageFirstProduct = productsMiniaturesBlock.getProduct(0);
         searchField.sendKeys(searchQuery);

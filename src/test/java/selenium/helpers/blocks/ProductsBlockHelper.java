@@ -1,5 +1,6 @@
 package selenium.helpers.blocks;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,6 +25,7 @@ public class ProductsBlockHelper extends HelperBase {
         PageFactory.initElements(wd, this);
     }
 
+    @Step("Pay attention to all products on the page")
     public List<Product> getAllProducts() {
         List<Product> productsJava = new ArrayList<>();
         for (WebElement product : products) {

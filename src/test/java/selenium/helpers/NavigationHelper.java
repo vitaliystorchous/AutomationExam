@@ -1,5 +1,6 @@
 package selenium.helpers;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import selenium.app.ApplicationManager;
 
@@ -9,15 +10,16 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.urlToBe;
 
 public class NavigationHelper extends HelperBase {
 
-    private final Properties properties;
+    private final String baseUrl;
 
     public NavigationHelper(ApplicationManager app) {
         super(app);
-        this.properties = app.getProperties();
+        baseUrl = app.getProperties().getProperty("web.baseUrl");
     }
 
+    @Step("Open the site homepage")
     public void homepage() {
-        wd.get(properties.getProperty("web.baseUrl"));
-        wait.until(urlToBe(properties.getProperty("web.baseUrl")));
+        wd.get(baseUrl);
+        wait.until(urlToBe(baseUrl));
     }
 }

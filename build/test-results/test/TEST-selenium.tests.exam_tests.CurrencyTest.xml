@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="selenium.tests.exam_tests.CurrencyTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2020-07-28T06:08:07" hostname="DESKTOP-DONVLUQ" time="9.372">
+  <properties/>
+  <testcase name="testDefaultSelectedCurrency" classname="selenium.tests.exam_tests.CurrencyTest" time="1.958"/>
+  <testcase name="testEURCurrencySelection" classname="selenium.tests.exam_tests.CurrencyTest" time="2.269"/>
+  <testcase name="testUAHCurrencySelection" classname="selenium.tests.exam_tests.CurrencyTest" time="2.424"/>
+  <testcase name="testUSDCurrencySelection" classname="selenium.tests.exam_tests.CurrencyTest" time="2.44"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Starting ChromeDriver 84.0.4147.30 (48b3e868b4cc0aa7e8149519690b6f6949e110a8-refs/branch-heads/4147@{#310}) on port 39134
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+лип. 28, 2020 9:08:03 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+]]></system-err>
+</testsuite>
